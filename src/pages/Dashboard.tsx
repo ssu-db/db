@@ -1,9 +1,30 @@
 import React, { useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 
+import { Background, Container, InfoWrap, StyledCard } from "../css/Dashboard";
+
 interface TitleProps {
   setTitle: (title: string) => void;
 }
+
+const dummy = [
+  {
+    subject: "데이터베이스 (대면) (00000000)",
+    semester: "2023-2학기",
+  },
+  {
+    subject: "미디어아트 (대면) (11111111)",
+    semester: "2023-2학기",
+  },
+  {
+    subject: "자료구조 (대면) (22222222)",
+    semester: "2023-2학기",
+  },
+  {
+    subject: "핀테크 (대면) (33333333)",
+    semester: "2023-2학기",
+  },
+];
 
 const Dashboard = () => {
   const { setTitle } = useOutletContext<TitleProps>();
@@ -12,7 +33,32 @@ const Dashboard = () => {
     setTitle("대시보드");
   }, []);
 
-  return <div>dashboard</div>;
+  return (
+    <Container>
+      {dummy.map((data, index) => {
+        return (
+          <Card key={index} subject={data.subject} semester={data.semester} />
+        );
+      })}
+    </Container>
+  );
+};
+
+interface CardProps {
+  subject: string;
+  semester: string;
+}
+const Card = ({ subject, semester }: CardProps) => {
+  return (
+    <StyledCard>
+      <Background />
+      <InfoWrap>
+        <span className="subject">{subject}</span>
+        <span className="semester">{semester}</span>
+        <span className="notice">{"> 공지사항 바로가기"}</span>
+      </InfoWrap>
+    </StyledCard>
+  );
 };
 
 export default Dashboard;
