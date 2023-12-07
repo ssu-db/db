@@ -19,7 +19,7 @@ const Menu = ({ options }: props) => {
   };
 
   return (
-    <div>
+    <>
       <MenuButton onClick={handleClick}>
         <MenuIcon />
       </MenuButton>
@@ -39,7 +39,7 @@ const Menu = ({ options }: props) => {
           </MenuItem>
         ))}
       </StyledMenu>
-    </div>
+    </>
   );
 };
 

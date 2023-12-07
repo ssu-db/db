@@ -4,6 +4,7 @@ export const StyledHeader = styled("div")`
   width: 100%;
   height: 68px;
   position: fixed;
+  top: 0;
   background: #a451b1;
 
   span {
