@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
+import Attendance from "./pages/Attendance";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import MyInfo from "./pages/MyInfo";
@@ -19,6 +20,7 @@ function App() {
             <Route path="/myInfo" element={<MyInfo />} />
             <Route path="/subject" element={<SubjectHome />} />
             <Route path="/study" element={<WeeklyStudy />} />
+            <Route path="/attendance" element={<Attendance />} />
           </Route>
         </Routes>
       </BrowserRouter>

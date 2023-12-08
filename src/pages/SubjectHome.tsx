@@ -52,6 +52,13 @@ const SubjectHome = () => {
       >
         주차 학습
       </div>
+      <div
+        onClick={() => {
+          navigator("/attendance");
+        }}
+      >
+        출결 확인
+      </div>
     </>
   );
 };
