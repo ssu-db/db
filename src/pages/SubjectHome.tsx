@@ -1,6 +1,11 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate, useParams } from "react-router-dom";
 
+import { BaseResponses } from "../client/BaseResponses.model";
+import { API_BASE_URL, USER_ID } from "../client/config";
+import { GetAllSubjects } from "../client/GetAllSubjects.model";
+import { Notice } from "../client/Notice.model";
 import {
   Attendance,
   ButtonWrap,
@@ -10,35 +15,38 @@ import {
   WeeklyStudy,
 } from "../css/SubjectHome";
 
-const dummyData = [
-  {
-    name: "공지명1",
-    content:
-      "공지요약1공지요약1 공지요약1 공지요약1 공지요약1공지요약1공지요약1 공지요약1 공지요약1 공지요약1",
-    date: "2023.12.02 14:42",
-  },
-  {
-    name: "공지명2",
-    content:
-      "공지요약2공지요약2 공지요약2 공지요약2 공지요약2공지요약2공지요약2 공지요약2 공지요약2 공지요약2",
-    date: "2023.12.02 14:42",
-  },
-  {
-    name: "공지명3",
-    content:
-      "공지요약3공지요약3 공지요약3 공지요약3 공지요약3공지요약3공지요약3 공지요약3 공지요약3 공지요약3",
-    date: "2023.12.02 14:42",
-  },
-];
-
 const SubjectHome = () => {
   const navigator = useNavigate();
+  const { subjectId } = useParams();
+
+  const [data, setData] = useState<Notice[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get<BaseResponses<Notice>>(
+          `${API_BASE_URL}/lms/subjects/notices/${subjectId}`,
+        );
+        const result = response.data;
+        const sql = result.sql;
+        setData(result.data);
+      } catch (error) {
+        console.error(
+          "[SubjectHome.tsx] 서버로부터 데이터를 가져오는데 실패했습니다.",
+          error,
+        );
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <ButtonWrap>
         <div
           onClick={() => {
-            navigator("/study");
+            navigator("/study/" + subjectId);
           }}
         >
           <WeeklyStudy />
@@ -63,22 +71,22 @@ const SubjectHome = () => {
       </ButtonWrap>
       <Title>최근 공지사항</Title>
       <NoticeWrap>
-        {dummyData.map((data, index) => {
+        {data.map((data, index) => {
           return (
             <div key={index} className={"notice"}>
               <div className={"container"}>
-                <span className={"name"}>{data.name}</span>
-                <span>{data.content}</span>
+                <span className={"name"}>{data.title}</span>
+                <span>{data.description}</span>
                 <div className={"notice_footer"}>
                   <span
                     className={"link"}
                     onClick={() => {
-                      navigator("/notice");
+                      navigator("/notice/" + data.id);
                     }}
                   >
                     바로가기
                   </span>
-                  <span className={"date"}>{data.date}</span>
+                  <span className={"date"}>{data.createdAt}</span>
                 </div>
               </div>
             </div>

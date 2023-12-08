@@ -5,7 +5,7 @@ import Attendance from "./pages/Attendance";
 import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import MyInfo from "./pages/MyInfo";
-import Notice from "./pages/Notice";
+import NoticeDetail from "./pages/NoticeDetail";
 import Report from "./pages/Report";
 import SubjectHome from "./pages/SubjectHome";
 import WeeklyStudy from "./pages/WeeklyStudy";
@@ -20,11 +20,11 @@ function App() {
           <Route path="/" element={<Home />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/myInfo" element={<MyInfo />} />
-            <Route path="/subject" element={<SubjectHome />} />
-            <Route path="/study" element={<WeeklyStudy />} />
+            <Route path="/subject/:subjectId" element={<SubjectHome />} />
+            <Route path="/study/:subjectId" element={<WeeklyStudy />} />
             <Route path="/attendance" element={<Attendance />} />
             <Route path="/report" element={<Report />} />
-            <Route path="/notice" element={<Notice />} />
+            <Route path="/notice/:noticeId" element={<NoticeDetail />} />
           </Route>
         </Routes>
       </BrowserRouter>
