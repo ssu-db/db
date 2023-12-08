@@ -3,10 +3,6 @@ import { useOutletContext } from "react-router-dom";
 
 import { Background, Container, InfoWrap, StyledCard } from "../css/Dashboard";
 
-interface TitleProps {
-  setTitle: (title: string) => void;
-}
-
 const dummy = [
   {
     subject: "데이터베이스 (대면) (00000000)",
@@ -27,12 +23,6 @@ const dummy = [
 ];
 
 const Dashboard = () => {
-  const { setTitle } = useOutletContext<TitleProps>();
-
-  useEffect(() => {
-    setTitle("대시보드");
-  }, []);
-
   return (
     <Container>
       {dummy.map((data, index) => {

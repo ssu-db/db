@@ -5,6 +5,9 @@ export const StyledHeader = styled("div")`
   height: 68px;
   position: fixed;
   top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: #a451b1;
 
   span {

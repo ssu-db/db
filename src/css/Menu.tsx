@@ -4,10 +4,8 @@ import styled from "styled-components";
 
 export const MenuButton = styled(IconButton)`
   &.MuiButtonBase-root {
-    position: absolute;
-    top: 13px;
-    left: 10px;
     color: white;
+    font-size: 18px;
   }
 `;
 
