@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { NoticeWrap, Title } from "../css/SubjectHome";
 
@@ -24,6 +25,7 @@ const dummyData = [
 ];
 
 const SubjectHome = () => {
+  const navigator = useNavigate();
   return (
     <>
       <Title>최근 공지사항</Title>
@@ -43,6 +45,13 @@ const SubjectHome = () => {
           );
         })}
       </NoticeWrap>
+      <div
+        onClick={() => {
+          navigator("/study");
+        }}
+      >
+        주차 학습
+      </div>
     </>
   );
 };

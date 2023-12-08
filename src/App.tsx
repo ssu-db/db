@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import Home from "./pages/Home";
 import MyInfo from "./pages/MyInfo";
 import SubjectHome from "./pages/SubjectHome";
+import WeeklyStudy from "./pages/WeeklyStudy";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/myInfo" element={<MyInfo />} />
             <Route path="/subject" element={<SubjectHome />} />
+            <Route path="/study" element={<WeeklyStudy />} />
           </Route>
         </Routes>
       </BrowserRouter>
