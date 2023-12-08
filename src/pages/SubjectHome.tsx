@@ -1,7 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { NoticeWrap, Title } from "../css/SubjectHome";
+import {
+  Attendance,
+  ButtonWrap,
+  NoticeWrap,
+  Score,
+  Title,
+  WeeklyStudy,
+} from "../css/SubjectHome";
 
 const dummyData = [
   {
@@ -28,6 +35,32 @@ const SubjectHome = () => {
   const navigator = useNavigate();
   return (
     <>
+      <ButtonWrap>
+        <div
+          onClick={() => {
+            navigator("/study");
+          }}
+        >
+          <WeeklyStudy />
+          <span>주차 학습</span>
+        </div>
+        <div
+          onClick={() => {
+            navigator("/attendance");
+          }}
+        >
+          <Attendance />
+          <span>출결 확인</span>
+        </div>
+        <div
+          onClick={() => {
+            navigator("/report");
+          }}
+        >
+          <Score />
+          <span>성적</span>
+        </div>
+      </ButtonWrap>
       <Title>최근 공지사항</Title>
       <NoticeWrap>
         {dummyData.map((data, index) => {
@@ -37,7 +70,14 @@ const SubjectHome = () => {
                 <span className={"name"}>{data.name}</span>
                 <span>{data.content}</span>
                 <div className={"notice_footer"}>
-                  <span className={"link"}>바로가기</span>
+                  <span
+                    className={"link"}
+                    onClick={() => {
+                      navigator("/notice");
+                    }}
+                  >
+                    바로가기
+                  </span>
                   <span className={"date"}>{data.date}</span>
                 </div>
               </div>
@@ -45,20 +85,6 @@ const SubjectHome = () => {
           );
         })}
       </NoticeWrap>
-      <div
-        onClick={() => {
-          navigator("/study");
-        }}
-      >
-        주차 학습
-      </div>
-      <div
-        onClick={() => {
-          navigator("/attendance");
-        }}
-      >
-        출결 확인
-      </div>
     </>
   );
 };

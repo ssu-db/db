@@ -37,6 +37,13 @@ const Home = () => {
           navigator("/myInfo");
         },
       },
+      {
+        menu: "성적 종합",
+        onClick: () => {
+          setTitle("성적 종합");
+          navigator("/report");
+        },
+      },
     ]);
   }, []);
 

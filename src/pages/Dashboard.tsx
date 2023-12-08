@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import { Background, Container, InfoWrap, StyledCard } from "../css/Dashboard";
 
@@ -39,13 +39,22 @@ interface CardProps {
   semester: string;
 }
 const Card = ({ subject, semester }: CardProps) => {
+  const navigator = useNavigate();
+
   return (
     <StyledCard>
       <Background />
       <InfoWrap>
         <span className="subject">{subject}</span>
         <span className="semester">{semester}</span>
-        <span className="notice">{"> 공지사항 바로가기"}</span>
+        <span
+          className="notice"
+          onClick={() => {
+            navigator("/subject");
+          }}
+        >
+          {"> 공지사항 바로가기"}
+        </span>
       </InfoWrap>
     </StyledCard>
   );
